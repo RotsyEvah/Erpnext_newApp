@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+<body>
+<h1>Bienvenue <span th:text="${username}"></span> !</h1>
+<p>Vous êtes connecté à ERPNext.</p>
+<a href="/logout">Déconnexion</a>
+<a href="/devis">Demande de devis</a>
+
+</body>
+</html>
