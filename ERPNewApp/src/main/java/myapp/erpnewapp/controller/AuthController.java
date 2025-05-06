@@ -1,6 +1,7 @@
 package myapp.erpnewapp.controller;
 
-import myapp.erpnewapp.service.ErpNextService;
+import myapp.erpnewapp.model.ErpNextSessionInfo;
+import myapp.erpnewapp.service.ErpNextAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 public class  AuthController {
 
     @Autowired
-    private ErpNextService erpNextService;
+    private ErpNextAuthService erpNextService;
 
     @GetMapping("/login")
     public String loginForm(
@@ -32,8 +33,9 @@ public class  AuthController {
             @RequestParam String password,
             HttpSession session
     ) {
-        if (erpNextService.authenticate(username, password)) {
-            session.setAttribute("username", username);
+        ErpNextSessionInfo info = erpNextService.loginAndGetSessionInfo(username, password);
+        if (info != null) {
+            session.setAttribute("info", info);
             return "redirect:/home";
         }
         return "redirect:/login?error=true";

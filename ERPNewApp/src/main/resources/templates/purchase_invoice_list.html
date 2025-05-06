@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Factures d'Achat</title>
+</head>
+<body>
+<h2>Factures d'Achat</h2>
+
+<div th:if="${error}" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Fournisseur</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Montant restant</th>
+            <th>Statut</th>
+            <th>Payé</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="invoice : ${purchaseInvoices}">
+            <td th:text="${invoice.name}">Nom</td>
+            <td th:text="${invoice.supplier}">Fournisseur</td>
+            <td th:text="${invoice.postingDate}">Date</td>
+            <td th:text="${invoice.total}">Total</td>
+            <td th:text="${invoice.outstandingAmount}">Montant restant</td>
+            <td th:text="${invoice.status}">Statut</td>
+            <td>
+                <span th:if="${invoice.paid}">Payée</span>
+                <form th:if="${!invoice.paid}" th:action="@{/purchase-invoices/pay}" method="post" style="display:inline;">
+                    <input type="hidden" name="invoiceName" th:value="${invoice.name}" />
+                    <button type="submit">Payer</button>
+                </form>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+</body>
+</html>
