@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Bons de Commande</title>
+</head>
+<body>
+
+    <form th:action="@{/purchase-orders}" method="get">
+        <label for="supplier">Fournisseur :</label>
+        <select name="supplier" id="supplier">
+            <option value="">-- Tous les fournisseurs --</option>
+            <option th:each="supplier : ${suppliers}"
+                    th:value="${supplier.name}"
+                    th:text="${supplier.supplierName}"
+                    th:selected="${selectedSupplier} == ${supplier.name}">
+            </option>
+        </select>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <br>
+    
+    <h1>Liste des Bons de Commande</h1>
+
+    <div th:if="${error}" th:text="${error}" style="color:red;"></div>
+
+    <table border="1">
+        <tr>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>Statut</th>
+            <th>Fournisseur</th>
+            <th>Reçu (%)</th>
+            <th>Facturé (%)</th>
+            <th>Reçu</th>         
+            <th>Payé</th>         
+        </tr>
+        <tr th:each="po : ${purchaseOrders}">
+            <td th:text="${po.name}"></td>
+            <td th:text="${po.transaction_date}"></td>
+            <td th:text="${po.status}"></td>
+            <td th:text="${po.supplier}"></td>
+            <td th:text="${po.per_received}"></td>
+            <td th:text="${po.per_billed}"></td>
+            <td th:text="${po.receptionStatus}"></td> 
+            <td th:text="${po.paymentStatus}"></td>  
+        </tr>
+    </table>
+    
+</body>
+</html>
