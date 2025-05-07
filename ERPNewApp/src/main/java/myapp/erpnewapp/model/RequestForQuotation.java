@@ -5,10 +5,10 @@ import java.util.List;
 
 @Data
 public class RequestForQuotation {
-    private String name;            // Référence RFQ
-    private String transactionDate; // Date de création
-    private String status;          // Statut (Draft, Submitted, etc.)
-    private String company;         // Société
+    private String name;
+    private String transactionDate;
+    private String status;
+    private String company;
     private List<RequestForQuotationItem> items;
 
     public String getName() {

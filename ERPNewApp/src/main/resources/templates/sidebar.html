@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- Fragment de sidebar -->
+<aside class="sidebar" th:fragment="sidebar">
+    <div class="sidebar-header">
+        <h3><i class="fas fa-cube"></i> ERPNext</h3>
+    </div>
+
+    <nav>
+        <ul class="sidebar-nav">
+            <li>
+                <a href="/home" th:classappend="${#httpServletRequest.requestURI == '/home'} ? 'active' : ''">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+            </li>
+            <li>
+                <a href="/rfqs" th:classappend="${#httpServletRequest.requestURI == '/rfqs'} ? 'active' : ''">
+                    <i class="fas fa-file-alt"></i> Demandes de devis
+                </a>
+            </li>
+            <li>
+                <a href="/purchase-orders" th:classappend="${#httpServletRequest.requestURI == '/purchase-orders'} ? 'active' : ''">
+                    <i class="fas fa-shopping-cart"></i> Commandes
+                </a>
+            </li>
+            <li>
+                <a href="/purchase-invoices" th:classappend="${#httpServletRequest.requestURI == '/purchase-invoices'} ? 'active' : ''">
+                    <i class="fas fa-file-invoice-dollar"></i> Factures
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <a href="/logout" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Déconnexion
+    </a>
+</aside>
+</body>
+</html>

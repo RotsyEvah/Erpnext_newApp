@@ -1,51 +1,155 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Liste des Bons de Commande</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bons de Commande - ERPNext</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
 </head>
 <body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-cube"></i> ERPNext</h3>
+        </div>
 
-    <form th:action="@{/purchase-orders}" method="get">
-        <label for="supplier">Fournisseur :</label>
-        <select name="supplier" id="supplier">
-            <option value="">-- Tous les fournisseurs --</option>
-            <option th:each="supplier : ${suppliers}"
-                    th:value="${supplier.name}"
-                    th:text="${supplier.supplierName}"
-                    th:selected="${selectedSupplier} == ${supplier.name}">
-            </option>
-        </select>
-        <button type="submit">Rechercher</button>
-    </form>
+        <nav>
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="/home">
+                        <i class="fas fa-home"></i> Accueil
+                    </a>
+                </li>
+                <li>
+                    <a href="/rfqs">
+                        <i class="fas fa-file-alt"></i> Demandes de devis
+                    </a>
+                </li>
+                <li>
+                    <a href="/purchase-orders" class="active">
+                        <i class="fas fa-shopping-cart"></i> Commandes
+                    </a>
+                </li>
+                <li>
+                    <a href="/purchase-invoices">
+                        <i class="fas fa-file-invoice-dollar"></i> Factures
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-    <br>
-    
-    <h1>Liste des Bons de Commande</h1>
+        <a href="/logout" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </a>
+    </aside>
 
-    <div th:if="${error}" th:text="${error}" style="color:red;"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="po-container">
+            <h1>
+                <i class="fas fa-shopping-cart"></i>
+                Liste des Bons de Commande
+            </h1>
 
-    <table border="1">
-        <tr>
-            <th>Nom</th>
-            <th>Date</th>
-            <th>Statut</th>
-            <th>Fournisseur</th>
-            <th>Reçu (%)</th>
-            <th>Facturé (%)</th>
-            <th>Reçu</th>         
-            <th>Payé</th>         
-        </tr>
-        <tr th:each="po : ${purchaseOrders}">
-            <td th:text="${po.name}"></td>
-            <td th:text="${po.transaction_date}"></td>
-            <td th:text="${po.status}"></td>
-            <td th:text="${po.supplier}"></td>
-            <td th:text="${po.per_received}"></td>
-            <td th:text="${po.per_billed}"></td>
-            <td th:text="${po.receptionStatus}"></td> 
-            <td th:text="${po.paymentStatus}"></td>  
-        </tr>
-    </table>
-    
+            <div class="filter-card">
+                <form th:action="@{/purchase-orders}" method="get" class="filter-form">
+                    <label for="supplier">Fournisseur :</label>
+                    <select name="supplier" id="supplier" class="form-select">
+                        <option value="">-- Tous les fournisseurs --</option>
+                        <option th:each="supplier : ${suppliers}"
+                                th:value="${supplier.name}"
+                                th:text="${supplier.supplierName}"
+                                th:selected="${selectedSupplier} == ${supplier.name}">
+                        </option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search me-1"></i> Rechercher
+                    </button>
+                </form>
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span th:text="${error}"></span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table po-table">
+                    <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Fournisseur</th>
+                        <th>Reçu (%)</th>
+                        <th>Facturé (%)</th>
+                        <th>Reçu</th>
+                        <th>Payé</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="po : ${purchaseOrders}">
+                        <td th:text="${po.name}"></td>
+                        <td th:text="${#dates.format(po.transaction_date, 'dd/MM/yyyy')}"></td>
+                        <td class="status-cell">
+                                <span th:switch="${po.status}" class="status-badge">
+                                    <span th:case="'Draft'" class="status-draft">
+                                        <i class="fas fa-pencil-alt me-1"></i>
+                                        <span th:text="${po.status}"></span>
+                                    </span>
+                                    <span th:case="'To Receive'" class="status-to-receive">
+                                        <i class="fas fa-truck me-1"></i>
+                                        <span th:text="${po.status}"></span>
+                                    </span>
+                                    <span th:case="'Completed'" class="status-completed">
+                                        <i class="fas fa-check-circle me-1"></i>
+                                        <span th:text="${po.status}"></span>
+                                    </span>
+                                    <span th:case="'Cancelled'" class="status-cancelled">
+                                        <i class="fas fa-times-circle me-1"></i>
+                                        <span th:text="${po.status}"></span>
+                                    </span>
+                                    <span th:case="*" th:text="${po.status}"></span>
+                                </span>
+                        </td>
+                        <td th:text="${po.supplier}"></td>
+                        <td class="percentage-cell" th:text="${po.per_received} + '%'"></td>
+                        <td class="percentage-cell" th:text="${po.per_billed} + '%'"></td>
+                        <td class="status-cell">
+                                <span th:if="${po.receptionStatus == 'Reçu'}" class="received-badge">
+                                    <i class="fas fa-check me-1"></i>
+                                    <span th:text="${po.receptionStatus}"></span>
+                                </span>
+                            <span th:if="${po.receptionStatus != 'Reçu'}" class="not-received-badge">
+                                    <i class="fas fa-times me-1"></i>
+                                    <span th:text="${po.receptionStatus}"></span>
+                                </span>
+                        </td>
+                        <td class="status-cell">
+                                <span th:if="${po.paymentStatus == 'Payé'}" class="paid-badge">
+                                    <i class="fas fa-check me-1"></i>
+                                    <span th:text="${po.paymentStatus}"></span>
+                                </span>
+                            <span th:if="${po.paymentStatus != 'Payé'}" class="not-paid-badge">
+                                    <i class="fas fa-times me-1"></i>
+                                    <span th:text="${po.paymentStatus}"></span>
+                                </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
