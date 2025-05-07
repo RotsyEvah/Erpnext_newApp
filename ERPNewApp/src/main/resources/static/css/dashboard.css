@@ -1,0 +1,578 @@
+/* src/main/resources/static/css/dashboard.css */
+:root {
+    --erp-primary: #7575ff;
+    --erp-primary-dark: #5a5ae0;
+    --erp-secondary: #f0f4f7;
+    --erp-text: #36414c;
+    --erp-light-gray: #f7fafc;
+    --erp-border: #d1d8dd;
+    --sidebar-width: 250px;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--erp-secondary);
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 0;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar-header {
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--erp-border);
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+    color: var(--erp-primary);
+    font-weight: 600;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: var(--erp-text);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-primary);
+}
+
+.sidebar-nav a.active {
+    background-color: var(--erp-primary);
+    color: white;
+}
+
+.sidebar-nav i {
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+}
+
+.welcome-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    border-top: 4px solid var(--erp-primary);
+}
+
+.welcome-card h2 {
+    color: var(--erp-primary);
+    margin-bottom: 1rem;
+}
+
+.welcome-card p {
+    color: var(--erp-text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #ff4d4d;
+    text-decoration: none;
+    margin-top: auto;
+    border-top: 1px solid var(--erp-border);
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    color: #ff1a1a;
+}
+
+.logout-btn i {
+    margin-right: 0.75rem;
+}
+
+
+
+/* Styles spécifiques à la page fournisseurs */
+.supplier-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--erp-primary);
+}
+
+.supplier-card h1 {
+    color: var(--erp-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--erp-text);
+    margin-bottom: 0.5rem;
+}
+
+.form-select, .form-control {
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid var(--erp-border);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: var(--erp-primary);
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 255, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--erp-primary);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--erp-primary-dark);
+}
+
+/* Styles spécifiques à la page des demandes de devis */
+.rfq-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--erp-primary);
+}
+
+.rfq-container h1 {
+    color: var(--erp-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.rfq-container h1 i {
+    margin-right: 0.75rem;
+}
+
+.table-responsive {
+    margin: 1.5rem 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead th {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-text);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--erp-border);
+}
+
+.table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--erp-border);
+    vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(117, 117, 255, 0.05);
+}
+
+.badge {
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.bg-success {
+    background-color: var(--erp-primary) !important;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-info {
+    background-color: var(--erp-primary);
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: var(--erp-primary-dark);
+}
+
+.alert-info {
+    background-color: #f0f7ff;
+    border-left: 4px solid var(--erp-primary);
+    color: var(--erp-text);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-btn i {
+    margin-right: 0.5rem;
+}
+
+/* Styles spécifiques à la page de réponse RFQ */
+.rfq-response-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--erp-primary);
+}
+
+.rfq-response-container h1 {
+    color: var(--erp-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.rfq-response-container h1 i {
+    margin-right: 0.75rem;
+}
+
+.card {
+    border: 1px solid var(--erp-border);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: none;
+}
+
+.card-header {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-text);
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--erp-border);
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.info-badge {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-text);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.info-badge i {
+    margin-right: 0.5rem;
+}
+
+.alert-success {
+    background-color: #f2fff4;
+    border-left: 4px solid #28a745;
+    color: var(--erp-text);
+}
+
+.alert-danger {
+    background-color: #fff2f2;
+    border-left: 4px solid #ff4d4d;
+    color: var(--erp-text);
+}
+
+.alert-info {
+    background-color: #f0f7ff;
+    border-left: 4px solid var(--erp-primary);
+    color: var(--erp-text);
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.price-input {
+    max-width: 120px;
+}
+/* Styles spécifiques à la page des factures d'achat */
+.invoice-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--erp-primary);
+}
+
+.invoice-container h2 {
+    color: var(--erp-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.invoice-container h2 i {
+    margin-right: 0.75rem;
+}
+
+.invoice-table th {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-text);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--erp-border);
+}
+
+.invoice-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--erp-border);
+    vertical-align: middle;
+}
+
+.invoice-table tr:last-child td {
+    border-bottom: none;
+}
+
+.invoice-table tr:hover {
+    background-color: rgba(117, 117, 255, 0.05);
+}
+
+.amount-cell {
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    text-align: right;
+}
+
+.paid-badge {
+    background-color: #28a745;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.pay-btn {
+    background-color: var(--erp-primary);
+    color: white;
+    border: none;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.pay-btn:hover {
+    background-color: var(--erp-primary-dark);
+    color: white;
+}
+
+.pay-btn i {
+    margin-right: 0.5rem;
+}
+
+.status-badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-draft {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-unpaid {
+    background-color: #dc3545;
+    color: white;
+}
+
+.status-paid {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Styles spécifiques à la page des bons de commande */
+.po-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--erp-primary);
+}
+
+.po-container h1 {
+    color: var(--erp-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.po-container h1 i {
+    margin-right: 0.75rem;
+}
+
+.filter-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--erp-border);
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-form label {
+    font-weight: 500;
+    color: var(--erp-text);
+    margin-bottom: 0;
+}
+
+.filter-form select {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+}
+
+.po-table th {
+    background-color: var(--erp-light-gray);
+    color: var(--erp-text);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--erp-border);
+}
+
+.po-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--erp-border);
+    vertical-align: middle;
+}
+
+.po-table tr:last-child td {
+    border-bottom: none;
+}
+
+.po-table tr:hover {
+    background-color: rgba(117, 117, 255, 0.05);
+}
+
+.percentage-cell {
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-cell {
+    text-align: center;
+    font-weight: 500;
+}
+
+.status-badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-draft {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-to-receive {
+    background-color: #fd7e14;
+    color: white;
+}
+
+.status-completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: white;
+}
+
+.received-badge {
+    background-color: #28a745;
+    color: white;
+}
+
+.not-received-badge {
+    background-color: #dc3545;
+    color: white;
+}
+
+.paid-badge {
+    background-color: #28a745;
+    color: white;
+}
+
+.not-paid-badge {
+    background-color: #dc3545;
+    color: white;
+}

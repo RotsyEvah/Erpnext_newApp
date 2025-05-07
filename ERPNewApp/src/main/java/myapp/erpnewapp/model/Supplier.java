@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class Supplier {
-    private String name;           // ID du fournisseur
-    private String supplierName;   // Nom complet du fournisseur
-    private String supplierGroup;  // Groupe du fournisseur
-    private String supplierType;  // Groupe du fournisseur
-    private String country;        // Pays
+    private String name;
+    private String supplierName;
+    private String supplierGroup;
+    private String supplierType;
+    private String country;
     private String language;
     private String emailId;
     private String mobileNo;

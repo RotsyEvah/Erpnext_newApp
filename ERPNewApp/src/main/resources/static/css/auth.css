@@ -1,0 +1,116 @@
+/* src/main/resources/static/css/auth.css */
+:root {
+    --erp-primary: #7575ff;
+    --erp-primary-dark: #5a5ae0;
+    --erp-secondary: #f0f4f7;
+    --erp-text: #36414c;
+    --erp-light-gray: #f7fafc;
+    --erp-border: #d1d8dd;
+}
+
+body {
+    background-color: var(--erp-secondary);
+    color: var(--erp-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.login-container {
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-top: 4px solid var(--erp-primary);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--erp-primary);
+    margin-bottom: 0.5rem;
+}
+
+.login-header img {
+    height: 40px;
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid var(--erp-border);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--erp-primary);
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 255, 0.25);
+}
+
+.btn-login {
+    background-color: var(--erp-primary);
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.btn-login:hover {
+    background-color: var(--erp-primary-dark);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.error-message {
+    color: #ff4d4d;
+    background-color: #fff2f2;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #ff4d4d;
+}
+
+.success-message {
+    color: #28a745;
+    background-color: #f2fff4;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #28a745;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #8d99a6;
+}
+
+.input-group-text {
+    background-color: var(--erp-light-gray);
+    border: 1px solid var(--erp-border);
+    border-right: none;
+    height: 2.8rem;
+}
+
+.input-with-icon {
+    border-left: none !important;
+}

@@ -10,7 +10,6 @@ import myapp.erpnewapp.model.RequestForQuotationItem;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -183,7 +182,6 @@ public class ErpNextRFQService {
     }
 
     public String createSupplierQuotationFromRFQ(QuotationResponseDTO response, String sid) throws Exception {
-        // Vérification de sécurité
         if (!isSupplierInRFQ(response.getRfqName(), response.getSupplierName(), sid)) {
             throw new SecurityException("Ce fournisseur n'est pas autorisé à répondre à ce RFQ");
         }
@@ -191,12 +189,10 @@ public class ErpNextRFQService {
         // Récupérer les détails du RFQ original
         RequestForQuotation rfq = getRFQDetails(response.getRfqName(), sid);
 
-        // Préparer les headers
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cookie", "sid=" + sid);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Construire le payload
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode payload = mapper.createObjectNode();
 
