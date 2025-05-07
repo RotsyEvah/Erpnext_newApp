@@ -203,7 +203,8 @@ public class ErpNextRFQService {
         payload.put("transaction_date", LocalDate.now().toString());
         payload.put("valid_till", LocalDate.now().plusDays(30).toString());
         payload.put("request_for_quotation", rfq.getName());
-        payload.put("status", rfq.getStatus());
+        payload.put("docstatus", 1);
+        payload.put("status", "Submitted");
 
         // Construction des items
         ArrayNode itemsArray = mapper.createArrayNode();
